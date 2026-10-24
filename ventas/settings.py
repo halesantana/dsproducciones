@@ -30,6 +30,10 @@ DEBUG = 'RAILWAY_ENVIRONMENT' not in os.environ
 
 ALLOWED_HOSTS = ['*']
 
+# Asegúrate de incluir tu dominio exacto de Railway con https://
+CSRF_TRUSTED_ORIGINS = [
+    'https://web-production-c7ea2.up.railway.app', 
+]
 
 # Application definition
 
