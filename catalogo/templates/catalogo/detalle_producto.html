@@ -1,0 +1,38 @@
+{% extends 'catalogo/base.html' %}
+
+{% block title %}Catálogo | Don Señor Producciones{% endblock %}
+
+{% block content %}
+
+    <div class="container my-5">
+        <a href="{% url 'lista_productos' %}" class="btn btn-outline-secondary mb-4">&larr; Volver al Catálogo</a>
+
+        <div class="row bg-white p-4 rounded shadow-sm align-items-center">
+            <div class="col-md-6 mb-4 mb-md-0">
+                {% if producto.imagen %}
+                    <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" class="img-fluid rounded shadow-sm w-100 object-fit-cover" style="max-height: 400px;">
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                <h1 class="fw-bold mb-3">{{ producto.nombre }}</h1>
+                <p class="text-muted lead">{{ producto.descripcion }}</p>
+                <h3 class="text-success fw-bold mb-4">${{ producto.precio_formateado }} CLP</h3>
+
+                {% if producto.requiere_personalizacion %}
+                <hr>
+                <form method="post" class="mt-4">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="texto_personalizado" class="form-label fw-bold">¿Qué texto o nombre quieres grabar?</label>
+                        <input type="text" class="form-control form-control-lg" id="texto_personalizado" name="texto_personalizado" placeholder="Ej: Logo o frase favorita" required>
+                        <div class="form-text">Este texto se enviará directamente para coordinar el grabado láser.</div>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-lg w-100">
+                        💬 Encargar por WhatsApp
+                    </button>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

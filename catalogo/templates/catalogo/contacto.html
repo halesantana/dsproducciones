@@ -1,0 +1,39 @@
+{% extends 'catalogo/base.html' %}
+
+{% block title %}Contacto | Don Señor Producciones{% endblock %}
+
+{% block content %}
+
+    <!-- Contenido Principal -->
+    <div class="container my-5" style="max-width: 800px;">
+        <h1 class="fw-bold mb-4 text-center">Contáctanos</h1>
+        <p class="text-center text-muted mb-5">¿Tienes una idea en mente, un diseño personalizado o necesitas un trabajo especial grabado con láser? Escríbenos y lo hacemos realidad.</p>
+
+        <div class="row g-4 justify-content-center">
+            <!-- Formulario -->
+            <div class="col-md-7">
+                <div class="card shadow-sm border-0 p-4">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label fw-bold">Tu Nombre</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ej: Juan Pérez" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label fw-bold">Correo Electrónico o Teléfono</label>
+                            <input type="text" class="form-control" id="email" name="email" placeholder="Ej: +569..." required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="mensaje" class="form-label fw-bold">Mensaje o Detalle del Proyecto</label>
+                            <textarea class="form-control" id="mensaje" name="mensaje" rows="4" placeholder="Cuéntanos qué material te gustaría grabar, medidas o diseño..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success w-100 py-2 fw-bold">
+                            💬 Enviar por WhatsApp
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

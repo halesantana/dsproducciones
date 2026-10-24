@@ -1,0 +1,48 @@
+{% extends 'catalogo/base.html' %}
+
+{% block title %}Catálogo | Don Señor Producciones{% endblock %}
+
+{% block content %}
+    <!-- Menú de Categorías (Botones tipo Píldora) -->
+    <div class="d-flex flex-wrap gap-2 mb-4">
+        <a href="{% url 'lista_productos' %}" class="btn {% if not categoria %}btn-dark{% else %}btn-outline-dark{% endif %} rounded-pill px-4">
+            Todos
+        </a>
+        {% for cat in categorias %}
+            <a href="{% url 'lista_productos_por_categoria' cat.slug %}" class="btn {% if categoria == cat %}btn-dark{% else %}btn-outline-dark{% endif %} rounded-pill px-4">
+                {{ cat.nombre }}
+            </a>
+        {% endfor %}
+    </div>
+
+    <h1 class="mb-4 fw-bold">{{ categoria.nombre|default:"Nuestros Productos Grabados" }}</h1>
+
+    <!-- Grid de Productos -->
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for producto in productos %}
+            <div class="col">
+                <div class="card h-100 shadow-sm border-0">
+                    {% if producto.imagen %}
+                        <div style="height: 250px; overflow: hidden; background-color: #eee;">
+                            <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" class="w-100 h-100 object-fit-cover">
+                        </div>
+                    {% endif %}
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title fw-bold">{{ producto.nombre }}</h5>
+                        <p class="card-text text-muted small">{{ producto.descripcion|truncatechars:90 }}</p>
+                        <div class="mt-auto">
+                            <p class="fs-5 fw-bold text-success mb-3">${{ producto.precio_formateado }} CLP</p>
+                            <a href="{% url 'detalle_producto' producto.slug %}" class="btn btn-primary w-100">Ver Detalles</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <div class="col-12">
+                <div class="alert alert-info text-center" role="alert">
+                    No hay productos disponibles en esta categoría por el momento.
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
