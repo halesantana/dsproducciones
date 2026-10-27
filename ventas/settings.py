@@ -145,7 +145,7 @@ MAILERS = {
 
 # Archivos estáticos (CSS, JS, Admin) -> se quedan local con WhiteNoise
 
-#MEDIA_URL = '/media/'
+MEDIA_URL = '/media/'
 #MEDIA_ROOT = BASE_DIR / 'media'
 
 CLOUDINARY_STORAGE = {
