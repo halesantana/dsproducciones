@@ -36,6 +36,8 @@ ALLOWED_HOSTS = ['*']
 # Asegúrate de incluir tu dominio exacto de Railway con https://
 CSRF_TRUSTED_ORIGINS = [
     'https://web-production-c7ea2.up.railway.app', 
+    'https://donsenor.cl',
+    'https://www.donsenor.cl',
 ]
 
 # Application definition
@@ -144,7 +146,7 @@ MAILERS = {
 # Archivos estáticos (CSS, JS, Admin) -> se quedan local con WhiteNoise
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+#MEDIA_ROOT = BASE_DIR / 'media'
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
